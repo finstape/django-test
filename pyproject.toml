@@ -1,0 +1,60 @@
+[tool.poetry]
+name = "django-test"
+version = "0.1.0"
+description = "Django project"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.2.12"
+djangorestframework = "^3.17.1"
+drf-spectacular = "^0.28.0"
+django-model-utils = "^5.0.0"
+psycopg = { version = "^3.3.3", extras = ["binary"] }
+gunicorn = "^22.0.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.10"
+mypy = "^1.15.0"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+extend-exclude = ["migrations", ".venv", "cache", "build", "dist"]
+
+[tool.ruff.lint]
+select = [
+    "E", "F", "W", "I", "N", "UP", "ASYNC", "S", "B", "A", "COM", "C4", "DTZ", 
+    "T10", "ISC", "ICN", "G", "INP", "PIE", "T20", "PYI", "PT", "Q", "RSE", 
+    "RET", "SLF", "SIM", "TID", "PTH", "ERA", "PD", "PL", "TRY", "FLY", "PERF", 
+    "FURB", "LOG", "RUF"
+]
+ignore = [
+    "D100", "D101", "D102", "D103", "D104", "D107",
+    "G004", "COM812", "ISC001"
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+exclude = ["venv", "migrations"]
